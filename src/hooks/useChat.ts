@@ -34,9 +34,11 @@ const DEFAULT_MESSAGES: ChatMessage[] = [
 ];
 
 const VISITOR_WS_URL =
-  import.meta.env.VITE_CHAT_WS_URL ?? 'ws://localhost:3000/ws';
+  import.meta.env.VITE_CHAT_WS_URL ??
+  'wss://angle-briary-valentina.ngrok-free.dev/ws';
 const ADMIN_WS_URL =
-  import.meta.env.VITE_CHAT_ADMIN_WS_URL ?? 'ws://localhost:3000/admin/ws';
+  import.meta.env.VITE_CHAT_ADMIN_WS_URL ??
+  'wss://angle-briary-valentina.ngrok-free.dev/admin/ws';
 
 function toChatMessage(m: {
   id: string;
@@ -311,14 +313,7 @@ export function useChat({ mode = 'visitor', adminToken }: UseChatArgs = {}) {
 
     socket.send({ type: 'AdminJoinChat', chat_id: selectedChatId });
     lastJoinedChatRef.current = selectedChatId;
-  }, [
-    adminReady,
-    adminToken,
-    isAdmin,
-    selectedChatId,
-    socket,
-    socket.status,
-  ]);
+  }, [adminReady, adminToken, isAdmin, selectedChatId, socket, socket.status]);
 
   const sendMessage = useCallback(
     (text: string) => {
