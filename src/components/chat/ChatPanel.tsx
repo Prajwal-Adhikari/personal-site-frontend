@@ -75,12 +75,11 @@ const ChatPanel: React.FC<ChatPanelProps> = ({ mode = 'visitor', adminToken }) =
         <Sidebar position="left" scrollable={isAdmin} style={{ width: 220 }}>
           <ConversationList>
             {!isAdmin && (
-              <Conversation
-                name="Chat"
-                info="Typically replies within a day"
-                active
-                lastMessage="Leave a message"
-              >
+            <Conversation
+              name="Chat"
+              info="Typically replies within a day"
+              active
+            >
                 <Avatar
                   name="You"
                   src="https://api.dicebear.com/7.x/identicon/svg?seed=you"
